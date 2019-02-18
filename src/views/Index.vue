@@ -51,6 +51,7 @@ export default {
     }
   },
   created() {
+    if (!history.state) return
     this.history.push({
       key: history.state.key,
       path: this.$route.fullPath
