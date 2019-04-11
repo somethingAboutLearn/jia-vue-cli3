@@ -15,6 +15,10 @@ export default {
     return {
       nav: [
         {
+          name: '图片',
+          path: '/picture'
+        },
+        {
           name: '音乐',
           path: '/music'
         },
@@ -32,10 +36,11 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .the-sidebar
     width 100%
     height 100%
+    border-top 1px solid #dfdfdf
     > ul
         display flex
         justify-content space-between
@@ -51,6 +56,7 @@ export default {
                 align-items center
                 width 100%
                 height 100%
+                font-size 14px
                 color #3eaf7c
                 background #fff
                 &.active

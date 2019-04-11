@@ -1,15 +1,16 @@
 <template>
-    <base-sticky-footer>
-        <template slot="base-header">
-            {{historyList}}
-        </template>
-        <transition :name="transitionName">
-            <router-view></router-view>
-        </transition>
-        <template slot="base-footer">
-            <the-sidebar></the-sidebar>
-        </template>
-    </base-sticky-footer>
+  <base-sticky-footer>
+    <template slot="base-header">
+      <!-- {{historyList}} -->
+      {{this.$route.meta.title}}
+    </template>
+    <transition :name="transitionName">
+      <router-view></router-view>
+    </transition>
+    <template slot="base-footer">
+      <the-sidebar></the-sidebar>
+    </template>
+  </base-sticky-footer>
 </template>
 
 <script>
@@ -20,7 +21,7 @@ export default {
   components: {
     TheSidebar
   },
-  data() {
+  data () {
     return {
       transitionName: '',
       history: []
@@ -30,10 +31,10 @@ export default {
     ...mapState('history', ['historyList'])
   },
   watch: {
-    $route(to, from) {
+    $route (to, from) {
       let inHistoryList = this.historyList.find(v => {
-          return v.key === history.state.key
-        }),
+        return v.key === history.state.key
+      }),
         transitionName = ''
       if (inHistoryList) {
         transitionName = 'slide-left'
@@ -50,7 +51,7 @@ export default {
       this.setValue({ key: 'historyList', value: this.history })
     }
   },
-  created() {
+  created () {
     if (!history.state) return
     this.history.push({
       key: history.state.key,
@@ -64,23 +65,23 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 /* 可以设置不同的进入和离开动画 */
 /* 设置持续时间和动画函数 */
 .slide-right-enter-active
-    transition all 0.8s
+  transition all 0.8s
 .slide-right-leave-active
-    transition all 0.8s
+  transition all 0.8s
 .slide-right-enter
-    transform translateX(100%)
+  transform translateX(100%)
 .slide-right-leave-to
-    transform translateX(-100%)
+  transform translateX(-100%)
 .slide-left-enter-active
-    transition all 0.8s
+  transition all 0.8s
 .slide-left-leave-active
-    transition all 0.8s
+  transition all 0.8s
 .slide-left-enter
-    transform translateX(-100%)
+  transform translateX(-100%)
 .slide-left-leave-to
-    transform translateX(100%)
+  transform translateX(100%)
 </style>

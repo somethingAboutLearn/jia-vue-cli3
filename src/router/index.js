@@ -8,5 +8,6 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  // linkExactActiveClass: 'active'
 })
