@@ -3,7 +3,7 @@
     <header class="base-header">
       <slot name="base-header"></slot>
     </header>
-    <main class="base-main">
+    <main class="base-main" @scroll="handleScroll">
       <slot></slot>
     </main>
     <footer class="base-footer">
@@ -13,14 +13,30 @@
 </template>
 
 <script>
+import Bus from '../bus/scroll'
+
 export default {
-  name: 'BaseStickyFooter'
+  name: 'BaseStickyFooter',
+  methods: {
+    handleScroll (e) {    //  监听 main 内容区滚动
+      let scrollTop = Number(e.target.scrollTop),
+        scrollHeight = Number(e.target.scrollHeight),
+        offsetHeight = Number(e.target.offsetHeight),
+        offsetY = 200
+      if (scrollTop > (scrollHeight - offsetHeight - offsetY)) {
+        let data = {
+          path: this.$route.path
+        }
+        Bus.$emit('on-scroll', data)
+      }
+    }
+  }
 }
 </script>
 
 <style lang="stylus">
 html, body
-  width 100%
+  width 750px
   height 100%
 #app
   width 100%
@@ -44,7 +60,6 @@ html, body
     position relative
     width 100%
     flex 1
-    padding 60px 0
     background-color #f2f2f2
     overflow hidden
     overflow-y scroll

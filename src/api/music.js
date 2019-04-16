@@ -1,10 +1,9 @@
 import Vue from 'vue'
 
-function getList({ page, limit, keyword }) {
+function getList({ time, limit }) {
   let data = {
-    page,
-    limit,
-    keyword
+    time,
+    limit
   }
   return Vue.axios({
     url: '/music',
