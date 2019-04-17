@@ -43,7 +43,6 @@ export default {
     async onScroll (data) {
       let path = this.$route.path
       if (path == data.path) {
-        console.log('滚动到页底加载数据 music', data)
         let res = await this.getList()
         res.data.list && (this.list = this.list.concat(res.data.list))
       }

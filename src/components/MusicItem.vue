@@ -4,8 +4,8 @@
       <div class="song">
         <div class="img">
           <img :src="item.pic" :alt="item.describe">
-          <img class="paused" v-if="play" :src="icon.play"></img>
-          <img class="paused" v-else :src="icon.paused" @click="handlePlay(item)"></img>
+          <img class="paused" v-if="play" :src="icon.play" />
+          <img class="paused" v-else :src="icon.paused" @click="handlePlay(item)" />
         </div>
         <div class="info">
           <div class="song">{{item.song}}</div>
@@ -63,14 +63,10 @@ export default {
   },
   methods: {
     handlePlay (item) {
-      let play = true,
-        data = {
-          item,
-          play
-        }
-      console.log('==before==', this.play)
+      let data = {
+        item
+      }
       this.$emit('on-play', data)
-      console.log('==after==', this.play)
     }
   }
 }

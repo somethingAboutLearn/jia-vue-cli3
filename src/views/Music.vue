@@ -40,13 +40,12 @@ export default {
   methods: {
     ...mapMutations('music', ['setValue']),
     onPlay (data) {   //  监测播放事件，设置当前播放歌曲信息及播放状态（play）
-      let { item, play } = data
+      let { item } = data
       this.setValue({ key: 'currentMusicItem', value: item })
     },
     async onScroll (data) {
       let path = this.$route.path
       if (path == data.path) {
-        console.log('滚动到页底加载数据 music', data)
         let res = await this.getList()
         res.data.list && (this.list = this.list.concat(res.data.list))
       }
